@@ -12,8 +12,8 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': '5194',
-        'NAME':'gymForceData',
+        'PASSWORD': 'cesaradmin',
+        'NAME':'imprentaGarcia',
         'OPTIONS':{
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
