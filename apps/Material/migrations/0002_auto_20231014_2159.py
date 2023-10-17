@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='material',
-            name='gramage',
+            name='gramaje',
             field=models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True),
         ),
         migrations.AlterField(

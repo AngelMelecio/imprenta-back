@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('nombre', models.CharField(max_length=50)),
                 ('ancho', models.DecimalField(decimal_places=2, max_digits=5)),
                 ('alto', models.DecimalField(decimal_places=2, max_digits=5)),
-                ('gramage', models.DecimalField(decimal_places=2, max_digits=5)),
+                ('gramaje', models.DecimalField(decimal_places=2, max_digits=5)),
                 ('grosor', models.DecimalField(decimal_places=2, max_digits=5)),
                 ('precio', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('stock', models.IntegerField()),
