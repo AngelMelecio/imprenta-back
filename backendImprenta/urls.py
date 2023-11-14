@@ -25,4 +25,5 @@ urlpatterns = [
     path('users/',include('apps.Users.routers')),
     path('api/',include('apps.Suaje.urls')),
     path('api/',include('apps.Material.urls')),
+    path('api/',include('apps.TipoMaterial.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
