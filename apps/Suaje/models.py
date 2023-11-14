@@ -5,10 +5,8 @@ from django.db import models
 class Suaje(models.Model):
     idSuaje = models.AutoField(primary_key=True,auto_created=True)
     numero = models.IntegerField(unique=True, null=False, blank=False)
-    ancho=models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
     alto=models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
-    margen=models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
-    precio=models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
+    ancho=models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
     numeroCortes=models.IntegerField(null=False, blank=False)
     
     def __str__(self):
