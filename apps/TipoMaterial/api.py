@@ -20,7 +20,12 @@ def tipomaterial_api_view(request):
         tipoMaterial_serializado = TipoMaterialSerializer(data=request.data)
         if tipoMaterial_serializado.is_valid():
             tipoMaterial_serializado.save()
-            return Response( {'message':'¡Tipo de material creado correctamente!'}, status=status.HTTP_201_CREATED )
+            all = TipoMaterialSerializer( TipoMaterial.objects.all(), many=True )
+            return Response( {
+                'message':'¡Tipo de material creado correctamente!',
+                'newOptsList':all.data,
+                'newOptId': tipoMaterial_serializado.data.get('idTipoMaterial')
+                }, status=status.HTTP_201_CREATED )
         return Response( tipoMaterial_serializado.errors, status=status.HTTP_400_BAD_REQUEST )
 
 @api_view(['GET','PUT','DELETE'])
@@ -49,8 +54,13 @@ def tipomaterial_detail_api_view(request, pk=None ):
             material = TipoMaterial.objects.filter( idTipoMaterial = pk ).first()
             try:
                 material.delete()
-                return Response(
-                    {'message':'¡Tipo de material eliminado correctamente!'}, 
+                # return the new TipoMaterial records
+                tipoMaterial = TipoMaterial.objects.all()
+                tipoMaterial_serializado = TipoMaterialSerializer(tipoMaterial,many=True) 
+                return Response({
+                    'message':'¡Tipo de material eliminado correctamente!',
+                    'newOptsList': tipoMaterial_serializado.data
+                    }, 
                     status=status.HTTP_200_OK
                 )
             except Exception as e:

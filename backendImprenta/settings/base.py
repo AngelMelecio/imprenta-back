@@ -20,11 +20,8 @@ ALLOWED_HOSTS = []
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:3030',
     'http://localhost:3035',
 ]
- 
 
 
 # Application definition
@@ -47,6 +44,7 @@ LOCAL_APPS = [
     'apps.Material',
     'apps.Suaje',
     'apps.TipoMaterial',    
+    'apps.CategoriaMaterial'
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
