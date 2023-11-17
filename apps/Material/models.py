@@ -1,11 +1,13 @@
 from django.db import models
 from apps.TipoMaterial.models import TipoMaterial
+from apps.CategoriaMaterial.models import CategoriaMaterial
 
 # Create your models here.
 class Material(models.Model):
+    
     idMaterial = models.AutoField(primary_key=True,auto_created=True)
-    categoria = models.CharField(max_length=50, null=False, blank=False) # Papel, Cartulina, Carton, etc
-    tipoMaterial = models.ForeignKey(TipoMaterial, on_delete=models.CASCADE, null=False, blank=False)
+    categoria = models.ForeignKey(CategoriaMaterial, on_delete=models.PROTECT, null=False, blank=False)
+    tipoMaterial = models.ForeignKey(TipoMaterial, on_delete=models.PROTECT, null=False, blank=False)
     alto = models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
     ancho = models.DecimalField(max_digits=5, decimal_places=2, null=False, blank=False)
     gramaje = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
@@ -15,4 +17,10 @@ class Material(models.Model):
     stock = models.IntegerField(null=False, blank=False)
     
     def __str__(self):
-        return f'{self.categoria} {self.tipoMaterial.nombre} {self.ancho}cm x {self.alto}cm {self.gramaje}gr  {self.color} ${self.precio}'
+        # Format gramaje, grosor, and color to handle None values with tabulation
+        gramaje_str = f'{self.gramaje}gr' if self.gramaje is not None else ''
+        grosor_str = self.grosor if self.grosor else ''
+        color_str = self.color if self.color else ''
+
+        # Using f-string with consistent spacing or tabulation
+        return f'{self.categoria.nombre}\t{self.tipoMaterial.nombre}\t{self.alto}cm x {self.ancho}cm\t{gramaje_str}\t{grosor_str}\t{color_str}\t${self.precio}' 
