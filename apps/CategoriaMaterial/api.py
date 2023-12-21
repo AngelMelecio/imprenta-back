@@ -40,16 +40,22 @@ def categoriaMaterial_detail_api_view(request, pk=None ):
             material = CategoriaMaterial.objects.filter( idCategoriaMaterial = pk ).first()
             try:
                 material.delete()
-                c = CategoriaMaterial.objects.all()
-                c_sz = CategoriaMaterialSerializer(CategoriaMaterial,many=True) 
+                categorias = CategoriaMaterial.objects.all()
+                categorias_serializadas = CategoriaMaterialSerializer(categorias,many=True) 
                 return Response({
                     'message':'¡Categoria eliminada correctamente!',
-                    'newOptsList': c_sz.data
+                    'newOptsList': categorias_serializadas.data
                     }, 
                     status=status.HTTP_200_OK
                 )
             except Exception as e:
+                print(e)
                 return Response(
                     {'message':'¡No es posible eliminar una categoria en uso!'}, 
                     status=status.HTTP_409_CONFLICT
                 )
+    return Response(
+        {'message':'No se encontró la categoria'}, 
+        status=status.HTTP_400_BAD_REQUEST
+    )
+      

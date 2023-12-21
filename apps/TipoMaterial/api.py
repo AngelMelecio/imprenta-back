@@ -64,6 +64,7 @@ def tipomaterial_detail_api_view(request, pk=None ):
                     status=status.HTTP_200_OK
                 )
             except Exception as e:
+                print(e)
                 return Response(
                     {'message':'¡No es posible eliminar un tipo de material en uso!'}, 
                     status=status.HTTP_409_CONFLICT
