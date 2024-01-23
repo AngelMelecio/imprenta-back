@@ -27,4 +27,8 @@ urlpatterns = [
     path('api/',include('apps.Material.urls')),
     path('api/',include('apps.TipoMaterial.urls')),
     path('api/',include('apps.CategoriaMaterial.urls')),
+    path('api/',include('apps.TipoImpresion.urls')),
+    path('api/',include('apps.Tinta.urls')),
+    path('api/',include('apps.Prensa.urls')),
+    path('api/',include('apps.PrecioPrensa.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
