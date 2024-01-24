@@ -15,6 +15,8 @@ class Material(models.Model):
     color = models.CharField(max_length=50, null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
     stock = models.IntegerField(null=False, blank=False)
+    otros = models.CharField(max_length=100, null=True, blank=True)
+    alturaGuillotina = models.IntegerField(null=False, blank=False, default=100)
     
     def __str__(self):
         # Format gramaje, grosor, and color to handle None values with tabulation
