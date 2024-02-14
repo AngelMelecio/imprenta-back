@@ -31,4 +31,6 @@ urlpatterns = [
     path('api/',include('apps.Tinta.urls')),
     path('api/',include('apps.Prensa.urls')),
     path('api/',include('apps.PrecioPrensa.urls')),
+    path('api/',include('apps.Nota.urls')),
+    path('api/',include('apps.Terminado.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

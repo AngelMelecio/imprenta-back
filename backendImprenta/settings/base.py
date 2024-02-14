@@ -43,8 +43,16 @@ LOCAL_APPS = [
     'apps.Users',
     'apps.Material',
     'apps.Suaje',
+    'apps.Nota',
     'apps.TipoMaterial',    
-    'apps.CategoriaMaterial'
+    'apps.CategoriaMaterial',
+    
+    'apps.TipoImpresion',
+    'apps.Tinta',
+    'apps.Prensa',
+
+    'apps.PrecioPrensa',
+    'apps.Terminado',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
