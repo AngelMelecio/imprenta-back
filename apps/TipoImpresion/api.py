@@ -100,3 +100,48 @@ def tipoImpresion_detail_api_view(request, pk=None ):
                 'message':'¡No es posible eliminar un tipo de impresion en uso!'}, 
                 status=status.HTTP_409_CONFLICT 
             )
+   
+
+@api_view(['GET','POST'])
+@parser_classes([MultiPartParser , JSONParser])
+def tipoImpresion_fi_api_view(request):
+    if request.method == 'POST':
+        tpo_serializado = TipoImpresionSerializer(data=request.data)
+        if tpo_serializado.is_valid():
+            tpo_serializado.save()
+            all = TipoImpresionSerializer( TipoImpresion.objects.all(), many=True )
+            return Response({
+                'message':'Tipo impresion creado correctamente!',
+                'newOptsList':all.data,
+                'newOptId': tpo_serializado.data.get('idTipoImpresion')}, 
+                status=status.HTTP_201_CREATED 
+            )        
+    if(request.method == 'GET'):
+        tpos = TipoImpresion.objects.all()
+        tpo_serializado = TipoImpresionSerializer(tpos,many=True)
+        return Response( tpo_serializado.data, status=status.HTTP_200_OK )
+
+@api_view(['GET','PUT','DELETE'])
+@parser_classes([MultiPartParser, JSONParser])
+def tipoImpresion_fi_detail_api_view(request, pk=None ):
+    if request.method == 'GET':
+        pass
+    if request.method == 'PUT':
+        pass
+    if request.method == 'DELETE':
+        tpo = TipoImpresion.objects.filter( idTipoImpresion = pk ).first()
+        try:
+            tpo.delete()
+            # return the new TipoImpresion records
+            tpos = TipoImpresion.objects.all()
+            tpos_serializado = TipoImpresionSerializer(tpos,many=True) 
+            return Response({
+                'message':'¡tipo de impresion eliminado correctamente!',
+                'newOptsList':tpos_serializado.data}, 
+                status=status.HTTP_200_OK 
+            )
+        except:
+            return Response({
+                'message':'¡No es posible eliminar tipo de impresion en uso!'}, 
+                status=status.HTTP_409_CONFLICT 
+            )
