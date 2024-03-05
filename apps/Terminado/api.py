@@ -20,6 +20,14 @@ def terminado_api_view(request):
             return Response( {'message':'¡Terminado creado correctamente!'}, status=status.HTTP_201_CREATED )
         return Response( terminado_serializer.errors, status=status.HTTP_400_BAD_REQUEST )
 
+@api_view(['GET'])
+@parser_classes([MultiPartParser , JSONParser])
+def terminados_trabajo_api_view(request, tipo_trabajo=None):
+    if(request.method == 'GET'):
+        terminados = Terminado.objects.filter( tipoTrabajo=tipo_trabajo )
+        terminados_serializer = TerminadoSerializer(terminados, many=True)
+        return Response(terminados_serializer.data, status=status.HTTP_200_OK)
+
 @api_view(['GET','PUT','DELETE'])
 @parser_classes([MultiPartParser, JSONParser])
 def terminado_detail_api_view(request, pk=None ):
