@@ -36,6 +36,7 @@ def terminado_detail_api_view(request, pk=None ):
     
     if request.method == 'GET':
         terminado_serializer =  TerminadoSerializer(terminado)
+        print(terminado_serializer.data)
         return Response( terminado_serializer.data, status=status.HTTP_200_OK )
     if request.method == 'PUT':
         terminado_serializer = TerminadoSerializer(terminado, data = request.data)
